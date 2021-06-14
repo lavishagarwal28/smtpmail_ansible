@@ -1,0 +1,29 @@
+hosts:
+vars_prompt:
+   - name: email
+     private: no
+     prompt: "enter your email "
+   
+   - name: password
+     private: yes
+     prompt: "Enter your email password"
+   
+   - name: client_email
+     private: no
+     prompt: "enter your clinet email address"
+     
+   - name: client_name
+     private: no
+     prompt: "enter your client name"
+     
+tasks:     
+- name: sending mail by SMTP protocol
+  mail:
+    host: "smtp.gmail.com"
+    port: 587
+    username: "{{ email }}"
+    password: "{{ password }}"
+    to : "{{ client_name }} <{{ client_email }}>"
+    subject: " subject of your mail"
+    body: "message of your email"
+    
